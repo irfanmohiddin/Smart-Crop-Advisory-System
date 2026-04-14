@@ -69,8 +69,8 @@ Python-Project/
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/smart-crop-advisory.git
-cd smart-crop-advisory
+git clone https://github.com/irfanmohiddin/Smart-Crop-Advisory-System.git
+cd Smart-Crop-Advisory-System
 ```
 
 ### 2. Install dependencies
