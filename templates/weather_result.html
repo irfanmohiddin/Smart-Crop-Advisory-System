@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Weather-Based Result - Smart Crop Advisory{% endblock %}
+
+{% block content %}
+<div class="container my-5 fade-in">
+    <!-- Weather Information -->
+    <div class="card mb-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <div class="card-body">
+            <h3 class="mb-3">
+                <i class="fas fa-cloud-sun"></i> Current Weather - {{ weather.city }}, {{ weather.country }}
+            </h3>
+            <div class="row text-center">
+                <div class="col-md-3 col-6 mb-3">
+                    <i class="fas fa-thermometer-half fa-2x mb-2"></i>
+                    <h5>{{ weather.temperature }}°C</h5>
+                    <small>Temperature</small>
+                </div>
+                <div class="col-md-3 col-6 mb-3">
+                    <i class="fas fa-tint fa-2x mb-2"></i>
+                    <h5>{{ weather.humidity }}%</h5>
+                    <small>Humidity</small>
+                </div>
+                <div class="col-md-3 col-6 mb-3">
+                    <i class="fas fa-cloud-showers-heavy fa-2x mb-2"></i>
+                    <h5>{{ weather.rainfall|round(2) }} mm</h5>
+                    <small>Est. Monthly Rainfall</small>
+                </div>
+                <div class="col-md-3 col-6 mb-3">
+                    <i class="fas fa-cloud fa-2x mb-2"></i>
+                    <h5>{{ weather.description|title }}</h5>
+                    <small>Condition</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Recommendation -->
+    <div class="result-card text-center">
+        <h1 class="display-4 mb-3">
+            <i class="fas fa-trophy"></i> Recommended Crop
+        </h1>
+        <h2 class="display-3 fw-bold">{{ prediction }}</h2>
+        <p class="lead">Best crop based on current weather and your soil conditions</p>
+    </div>
+
+    <!-- Top Recommendations -->
+    <div class="mb-4">
+        <h3 class="mb-4 text-center">
+            <i class="fas fa-chart-bar"></i> Top Recommendations
+        </h3>
+        <div class="row">
+            {% for rec in recommendations %}
+            <div class="col-md-4 mb-3">
+                <div class="recommendation-card">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h5 class="mb-0">{{ rec.crop }}</h5>
+                        <span class="badge bg-success probability-badge">
+                            {{ rec.probability }}%
+                        </span>
+                    </div>
+                    <a href="{{ url_for('crop_information', crop_name=rec.crop.lower()) }}"
+                       class="btn btn-sm btn-outline-primary mt-2">
+                        View Details <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Crop Details -->
+    {% if crop_details %}
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+            <h4 class="mb-0">
+                <i class="fas fa-seedling"></i> {{ prediction }} - Growing Information
+            </h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="info-box">
+                        <h5><i class="fas fa-calendar"></i> Season</h5>
+                        <p>{{ crop_details.season }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-box">
+                        <h5><i class="fas fa-clock"></i> Duration</h5>
+                        <p>{{ crop_details.duration }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box mt-3">
+                <h5><i class="fas fa-lightbulb"></i> Growing Tips</h5>
+                <ul class="tips-list">
+                    {% for tip in crop_details.tips %}
+                    <li>{{ tip }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="info-box mt-3">
+                <h5><i class="fas fa-chart-line"></i> Expected Yield</h5>
+                <p class="mb-0">{{ crop_details.expected_yield }}</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Actions -->
+    <div class="text-center">
+        <a href="{{ url_for('weather_recommend') }}" class="btn btn-primary btn-lg me-2">
+            <i class="fas fa-redo"></i> Try Another City
+        </a>
+        <a href="{{ url_for('index') }}" class="btn btn-outline-secondary btn-lg">
+            <i class="fas fa-home"></i> Home
+        </a>
+    </div>
+</div>
+{% endblock %}

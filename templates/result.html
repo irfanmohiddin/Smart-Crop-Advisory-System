@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% block title %}Recommendation Result - Smart Crop Advisory{% endblock %}
+
+{% block content %}
+<div class="container my-5 fade-in">
+    <!-- Main Recommendation -->
+    <div class="result-card text-center">
+        <h1 class="display-4 mb-3">
+            <i class="fas fa-trophy"></i> Recommended Crop
+        </h1>
+        <h2 class="display-3 fw-bold">{{ prediction }}</h2>
+        <p class="lead">Best crop for your soil and weather conditions</p>
+    </div>
+
+    <!-- Input Summary -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0"><i class="fas fa-info-circle"></i> Input Parameters</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3 col-6 mb-2">
+                    <strong>Nitrogen:</strong> {{ input_data.N }}
+                </div>
+                <div class="col-md-3 col-6 mb-2">
+                    <strong>Phosphorus:</strong> {{ input_data.P }}
+                </div>
+                <div class="col-md-3 col-6 mb-2">
+                    <strong>Potassium:</strong> {{ input_data.K }}
+                </div>
+                <div class="col-md-3 col-6 mb-2">
+                    <strong>Temperature:</strong> {{ input_data.temperature }}°C
+                </div>
+                <div class="col-md-3 col-6 mb-2">
+                    <strong>Humidity:</strong> {{ input_data.humidity }}%
+                </div>
+                <div class="col-md-3 col-6 mb-2">
+                    <strong>pH:</strong> {{ input_data.ph }}
+                </div>
+                <div class="col-md-3 col-6 mb-2">
+                    <strong>Rainfall:</strong> {{ input_data.rainfall }} mm
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Recommendations -->
+    <div class="mb-4">
+        <h3 class="mb-4 text-center">
+            <i class="fas fa-chart-bar"></i> Top Recommendations
+        </h3>
+        <div class="row">
+            {% for rec in recommendations %}
+            <div class="col-md-4 mb-3">
+                <div class="recommendation-card">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h5 class="mb-0">{{ rec.crop }}</h5>
+                        <span class="badge bg-success probability-badge">
+                            {{ rec.probability }}%
+                        </span>
+                    </div>
+                    <a href="{{ url_for('crop_information', crop_name=rec.crop.lower()) }}"
+                       class="btn btn-sm btn-outline-primary mt-2">
+                        View Details <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Crop Details -->
+    {% if crop_details %}
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+            <h4 class="mb-0">
+                <i class="fas fa-seedling"></i> {{ prediction }} - Growing Information
+            </h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="info-box">
+                        <h5><i class="fas fa-calendar"></i> Season</h5>
+                        <p>{{ crop_details.season }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-box">
+                        <h5><i class="fas fa-clock"></i> Duration</h5>
+                        <p>{{ crop_details.duration }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-box">
+                        <h5><i class="fas fa-tint"></i> Water Requirement</h5>
+                        <p>{{ crop_details.water_requirement }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-box">
+                        <h5><i class="fas fa-mountain"></i> Soil Type</h5>
+                        <p>{{ crop_details.soil_type }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-box">
+                        <h5><i class="fas fa-thermometer-half"></i> Ideal Temperature</h5>
+                        <p>{{ crop_details.ideal_temp }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-box">
+                        <h5><i class="fas fa-vial"></i> Ideal pH</h5>
+                        <p>{{ crop_details.ideal_ph }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box mt-3">
+                <h5><i class="fas fa-flask"></i> Fertilizer Requirements</h5>
+                <div class="row">
+                    <div class="col-md-4">
+                        <strong>Nitrogen (N):</strong> {{ crop_details.fertilizer.N }}
+                    </div>
+                    <div class="col-md-4">
+                        <strong>Phosphorus (P):</strong> {{ crop_details.fertilizer.P }}
+                    </div>
+                    <div class="col-md-4">
+                        <strong>Potassium (K):</strong> {{ crop_details.fertilizer.K }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box mt-3">
+                <h5><i class="fas fa-lightbulb"></i> Growing Tips</h5>
+                <ul class="tips-list">
+                    {% for tip in crop_details.tips %}
+                    <li>{{ tip }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="info-box">
+                        <h5><i class="fas fa-bug"></i> Common Pests</h5>
+                        <p>{{ crop_details.common_pests|join(', ') }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-box">
+                        <h5><i class="fas fa-cut"></i> Harvest Time</h5>
+                        <p>{{ crop_details.harvest_time }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box mt-3">
+                <h5><i class="fas fa-chart-line"></i> Expected Yield</h5>
+                <p class="mb-0">{{ crop_details.expected_yield }}</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Actions -->
+    <div class="text-center">
+        <a href="{{ url_for('recommend') }}" class="btn btn-primary btn-lg me-2">
+            <i class="fas fa-redo"></i> Try Again
+        </a>
+        <a href="{{ url_for('index') }}" class="btn btn-outline-secondary btn-lg">
+            <i class="fas fa-home"></i> Home
+        </a>
+    </div>
+</div>
+{% endblock %}

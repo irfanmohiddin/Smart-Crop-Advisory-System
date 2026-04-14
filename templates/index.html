@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Smart Crop Advisory System{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold text-white mb-4">
+                    <i class="fas fa-seedling"></i> Smart Crop Advisory System
+                </h1>
+                <p class="lead mb-4">
+                    Empowering farmers with AI-powered crop recommendations based on soil conditions and weather data
+                </p>
+                <div class="d-grid gap-2 d-md-flex">
+                    <a href="{{ url_for('recommend') }}" class="btn btn-light btn-lg px-4">
+                        <i class="fas fa-leaf"></i> Get Recommendation
+                    </a>
+                    <a href="{{ url_for('weather_recommend') }}" class="btn btn-outline-light btn-lg px-4">
+                        <i class="fas fa-cloud-sun"></i> Weather Based
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center mt-4 mt-lg-0">
+                <i class="fas fa-tractor fa-10x text-white opacity-75"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="container my-5">
+    <h2 class="text-center mb-5">How It Works</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card feature-card h-100 text-center p-4">
+                <div class="card-body">
+                    <i class="fas fa-flask feature-icon"></i>
+                    <h4 class="card-title">Soil Analysis</h4>
+                    <p class="card-text">
+                        Input your soil's NPK values and pH level to get precise recommendations
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card feature-card h-100 text-center p-4">
+                <div class="card-body">
+                    <i class="fas fa-cloud-sun-rain feature-icon"></i>
+                    <h4 class="card-title">Weather Data</h4>
+                    <p class="card-text">
+                        Real-time weather information including temperature, humidity, and rainfall
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card feature-card h-100 text-center p-4">
+                <div class="card-body">
+                    <i class="fas fa-brain feature-icon"></i>
+                    <h4 class="card-title">AI Prediction</h4>
+                    <p class="card-text">
+                        Machine learning model trained on thousands of data points for accurate predictions
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Supported Crops Section -->
+<div class="container my-5">
+    <h2 class="text-center mb-5">Supported Crops</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card p-4">
+                <div class="row g-3">
+                    {% for crop in crops %}
+                    <div class="col-6 col-md-3">
+                        <a href="{{ url_for('crop_information', crop_name=crop.lower()) }}"
+                           class="text-decoration-none">
+                            <div class="alert alert-success mb-0 text-center">
+                                <i class="fas fa-seedling"></i> {{ crop }}
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        <a href="{{ url_for('all_crops') }}" class="btn btn-primary btn-lg">
+            <i class="fas fa-book"></i> View All Crop Details
+        </a>
+    </div>
+</div>
+
+<!-- Call to Action -->
+<div class="bg-light py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">Ready to Find the Best Crop for Your Farm?</h2>
+        <p class="lead mb-4">Get personalized recommendations in seconds</p>
+        <a href="{{ url_for('recommend') }}" class="btn btn-success btn-lg">
+            <i class="fas fa-rocket"></i> Start Now
+        </a>
+    </div>
+</div>
+{% endblock %}

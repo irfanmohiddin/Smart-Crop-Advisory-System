@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+
+{% block title %}About - Smart Crop Advisory System{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="text-center mb-5">
+                <h1 class="display-4">
+                    <i class="fas fa-info-circle"></i> About Our System
+                </h1>
+                <p class="lead">AI-Powered Agricultural Decision Support</p>
+            </div>
+
+            <!-- Mission -->
+            <div class="card mb-4">
+                <div class="card-body p-4">
+                    <h3 class="card-title">
+                        <i class="fas fa-bullseye text-primary"></i> Our Mission
+                    </h3>
+                    <p class="lead">
+                        To empower small and marginal farmers with data-driven crop recommendations
+                        that maximize yield and minimize risk through the power of machine learning
+                        and real-time weather data.
+                    </p>
+                </div>
+            </div>
+
+            <!-- How It Works -->
+            <div class="card mb-4">
+                <div class="card-body p-4">
+                    <h3 class="card-title">
+                        <i class="fas fa-cogs text-success"></i> How It Works
+                    </h3>
+                    <div class="row mt-4">
+                        <div class="col-md-4 mb-3">
+                            <div class="text-center">
+                                <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                                     style="width: 80px; height: 80px;">
+                                    <span class="fs-2 fw-bold">1</span>
+                                </div>
+                                <h5>Data Collection</h5>
+                                <p>Input soil parameters (NPK, pH) and get weather data</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="text-center">
+                                <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                                     style="width: 80px; height: 80px;">
+                                    <span class="fs-2 fw-bold">2</span>
+                                </div>
+                                <h5>AI Analysis</h5>
+                                <p>Machine learning model analyzes all parameters</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="text-center">
+                                <div class="bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                                     style="width: 80px; height: 80px;">
+                                    <span class="fs-2 fw-bold">3</span>
+                                </div>
+                                <h5>Recommendation</h5>
+                                <p>Get personalized crop suggestions with growing tips</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technology Stack -->
+            <div class="card mb-4">
+                <div class="card-body p-4">
+                    <h3 class="card-title">
+                        <i class="fas fa-laptop-code text-info"></i> Technology Stack
+                    </h3>
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <h5><i class="fab fa-python text-warning"></i> Backend</h5>
+                            <ul class="list-unstyled ms-4">
+                                <li>✓ Python 3.x</li>
+                                <li>✓ Flask Web Framework</li>
+                                <li>✓ Scikit-learn (Machine Learning)</li>
+                                <li>✓ Pandas & NumPy (Data Processing)</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <h5><i class="fab fa-html5 text-danger"></i> Frontend</h5>
+                            <ul class="list-unstyled ms-4">
+                                <li>✓ HTML5 & CSS3</li>
+                                <li>✓ Bootstrap 5</li>
+                                <li>✓ Font Awesome Icons</li>
+                                <li>✓ Responsive Design</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <h5><i class="fas fa-brain text-primary"></i> Machine Learning</h5>
+                            <ul class="list-unstyled ms-4">
+                                <li>✓ Random Forest Classifier</li>
+                                <li>✓ 99%+ Accuracy</li>
+                                <li>✓ Trained on 2200+ samples</li>
+                                <li>✓ 22 Crop Categories</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <h5><i class="fas fa-cloud text-info"></i> APIs</h5>
+                            <ul class="list-unstyled ms-4">
+                                <li>✓ OpenWeatherMap API</li>
+                                <li>✓ Real-time Weather Data</li>
+                                <li>✓ Location-based Forecasts</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="card mb-4">
+                <div class="card-body p-4">
+                    <h3 class="card-title">
+                        <i class="fas fa-star text-warning"></i> Key Features
+                    </h3>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <ul class="tips-list">
+                                <li>AI-powered crop recommendations</li>
+                                <li>Real-time weather integration</li>
+                                <li>Detailed growing guides for 22 crops</li>
+                                <li>Soil nutrient analysis</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="tips-list">
+                                <li>Fertilizer recommendations</li>
+                                <li>Pest management information</li>
+                                <li>Expected yield estimates</li>
+                                <li>User-friendly interface</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Supported Crops -->
+            <div class="card mb-4">
+                <div class="card-body p-4">
+                    <h3 class="card-title">
+                        <i class="fas fa-seedling text-success"></i> Supported Crops (22)
+                    </h3>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <h6 class="text-primary">Cereals & Grains</h6>
+                            <ul class="list-unstyled">
+                                <li>• Rice</li>
+                                <li>• Wheat</li>
+                                <li>• Maize</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="text-primary">Pulses</h6>
+                            <ul class="list-unstyled">
+                                <li>• Chickpea</li>
+                                <li>• Kidney Beans</li>
+                                <li>• Pigeon Peas</li>
+                                <li>• Moth Beans</li>
+                                <li>• Mung Bean</li>
+                                <li>• Black Gram</li>
+                                <li>• Lentil</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="text-primary">Cash Crops</h6>
+                            <ul class="list-unstyled">
+                                <li>• Cotton</li>
+                                <li>• Jute</li>
+                                <li>• Coffee</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="text-primary">Fruits</h6>
+                            <ul class="list-unstyled">
+                                <li>• Pomegranate</li>
+                                <li>• Banana</li>
+                                <li>• Mango</li>
+                                <li>• Grapes</li>
+                                <li>• Watermelon</li>
+                                <li>• Muskmelon</li>
+                                <li>• Apple</li>
+                                <li>• Orange</li>
+                                <li>• Papaya</li>
+                                <li>• Coconut</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="text-center mt-5">
+                <h3 class="mb-4">Ready to Get Started?</h3>
+                <a href="{{ url_for('recommend') }}" class="btn btn-success btn-lg me-2">
+                    <i class="fas fa-leaf"></i> Get Recommendation
+                </a>
+                <a href="{{ url_for('all_crops') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-book"></i> Browse Crops
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

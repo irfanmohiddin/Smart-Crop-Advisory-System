@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}All Crops - Smart Crop Advisory{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4">
+            <i class="fas fa-book"></i> Complete Crop Guide
+        </h1>
+        <p class="lead">Explore detailed information about all supported crops</p>
+    </div>
+
+    <div class="row">
+        {% for crop in crops %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card feature-card h-100">
+                <div class="card-body">
+                    <h4 class="card-title text-center mb-3">
+                        <i class="fas fa-seedling text-success"></i> {{ crop.name }}
+                    </h4>
+
+                    <div class="mb-3">
+                        <small class="text-muted">
+                            <i class="fas fa-calendar"></i> Season:
+                        </small>
+                        <p class="mb-2">{{ crop.details.season }}</p>
+
+                        <small class="text-muted">
+                            <i class="fas fa-clock"></i> Duration:
+                        </small>
+                        <p class="mb-2">{{ crop.details.duration }}</p>
+
+                        <small class="text-muted">
+                            <i class="fas fa-chart-line"></i> Expected Yield:
+                        </small>
+                        <p class="mb-3">{{ crop.details.expected_yield }}</p>
+                    </div>
+
+                    <div class="d-grid">
+                        <a href="{{ url_for('crop_information', crop_name=crop.name.lower()) }}"
+                           class="btn btn-primary">
+                            View Full Details <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="text-center mt-5">
+        <a href="{{ url_for('recommend') }}" class="btn btn-success btn-lg">
+            <i class="fas fa-leaf"></i> Get Crop Recommendation
+        </a>
+    </div>
+</div>
+{% endblock %}
